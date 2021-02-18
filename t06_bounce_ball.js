@@ -18,6 +18,7 @@ function draw() {
 	ellipse(circleX, circleY, 50, 50);
 	circleX = circleX + speed;
 	if (circleX > width) {
+		
 		speed = speed * -1
 	}else{
 		speed = speed * 1;
