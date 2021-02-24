@@ -12,21 +12,28 @@ var ball = {
 	radius: function(){
 		return (this.w / 2);
 	},
-	
-	//ball physics against x wall
-	bounceX: function (){
-		if (ball.x > width - ball.radius()) {
-			ball.x = width - ball.radius();
-			ball.moveX = ball.moveX * -1 + random(-0.1, 0.1);
-			console.log("X Velocity: " + ball.moveX);
-		}else if (ball.x < ball.radius()){
-			ball.x = ball.radius();
-			ball.moveX = ball.moveX * -1;
-			console.log("X Velocity: " + ball.moveX);
+var ball = [];
+
+
+class Ball {
+	constructor (){
+		this.x = 100;
+		this.y = 100;
+		this.w = 50;
+		this.h = 50;
+	}
+	bounceX(){
+		if (this.x > width - this.radius()) {
+			this.x = width - this.radius();
+			this.moveX = this.moveX * -1 + random(-0.1, 0.1);
+			console.log("X Velocity: " + this.moveX);
+		}else if (this.x < this.radius()){
+			this.x = this.radius();
+			this.moveX = this.moveX * -1;
+			console.log("X Velocity: " + this.moveX);
 		}
-	},
-	//ball physics against y wall
-	bounceY: function (){
+	}
+	bounceY(){
 		if (ball.y > height - ball.radius()) {
 			ball.y = height - ball.radius();
 			ball.moveY = ball.moveY * -1 + random(-0.1, 0.1);
@@ -36,14 +43,24 @@ var ball = {
 			ball.moveY = ball.moveY * -1;
 			console.log("Y Velocity: " + ball.moveY);
 		}
-	},
+	}
+
+	}
+
+
+	//ball physics against y wall
+
 }
 
 
 function setup(){
-	createCanvas(400,400);
-	ball.x = random(100,300);
-	ball.y = random(100,300)
+	createCanvas(300, 200);
+	ball.x = random(100, width - 100);
+	ball.y = random(100, height - 100)
+	for (i = 0; i = 5; i++){
+		ball[i] = new Ball();
+
+	}
 }
 
 
