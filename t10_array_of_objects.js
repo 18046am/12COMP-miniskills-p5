@@ -1,76 +1,46 @@
-var ball = {
-	x:100,
-	y:100,
-	//width
-	w:50,
-	//height
-	h:50,
-	//x velocity
-	moveX: 5,
-	//y velocity
-	moveY: 5,
-	radius: function(){
-		return (this.w / 2);
-	},
-var ball = [];
 
+let ball;
 
+function setup() {
+	createCanvas(500,500);
+	ball = new Ball (250, 250, 50);
+}
+function draw() {
+	background(200);
+	ball.move();
+	ball.show();
+	ball.bounce();
+}
 class Ball {
-	constructor (){
-		this.x = 100;
-		this.y = 100;
-		this.w = 50;
-		this.h = 50;
+	constructor(x, y, r){
+		this.x = x;
+		this.y = y;
+		this.r = r;
 	}
-	bounceX(){
-		if (this.x > width - this.radius()) {
-			this.x = width - this.radius();
-			this.moveX = this.moveX * -1 + random(-0.1, 0.1);
-			console.log("X Velocity: " + this.moveX);
-		}else if (this.x < this.radius()){
-			this.x = this.radius();
-			this.moveX = this.moveX * -1;
-			console.log("X Velocity: " + this.moveX);
+	move() {
+		this.x = this.x + random(-4 , 4);
+		this.y = this.y + random(-4 , 4);
+	}
+	show() {
+    stroke(255);
+    strokeWeight(4);
+    noFill();
+    ellipse(this.x, this.y, this.r);
+	}
+	bounce() {
+		if(this.y > (height - this.r)) {
+			this.y = height - this.r;
+				console.log("Y Position: " + this.y);
+		} else if(this.y < this.r){
+			this.y = this.r;
+				console.log("Y Position: " + this.y);
+				}
+		if (this.x < this.r) {
+			this.x = this.r;
+				console.log("X Position: " + this.x);
+		} else if (this.x > (width - this.r))
+			this.x = width - this.x;
+			console.log("X Position: " + this.x);
+
 		}
 	}
-	bounceY(){
-		if (ball.y > height - ball.radius()) {
-			ball.y = height - ball.radius();
-			ball.moveY = ball.moveY * -1 + random(-0.1, 0.1);
-			console.log("Y Velocity: " + ball.moveY);
-		}else if (ball.y < ball.radius()){
-			ball.y = ball.radius();
-			ball.moveY = ball.moveY * -1;
-			console.log("Y Velocity: " + ball.moveY);
-		}
-	}
-
-	}
-
-
-	//ball physics against y wall
-
-}
-
-
-function setup(){
-	createCanvas(300, 200);
-	ball.x = random(100, width - 100);
-	ball.y = random(100, height - 100)
-	for (i = 0; i = 5; i++){
-		ball[i] = new Ball();
-
-	}
-}
-
-
-function draw(){
-	background(125, 197, 219);
-	fill(125, 197, 219);
-	ellipse(ball.x, ball.y, ball.w, ball.h);
-	ball.x = ball.x + ball.moveX;
-	ball.y = ball.y + ball.moveY;
-	ball.bounceX()
-	ball.bounceY()
-}
-   
