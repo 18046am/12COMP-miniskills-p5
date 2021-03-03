@@ -1,46 +1,63 @@
-
-let ball;
+//var creation
+var ballArray = [];
+var radius;
+var i; 
 
 function setup() {
-	createCanvas(500,500);
-	ball = new Ball (250, 250, 50);
+	createCanvas(windowWidth, windowHeight);
+	createBall(50);
+	frameRate(60);
+	console.log(ballArray.length);
 }
+
 function draw() {
 	background(200);
-	ball.move();
-	ball.show();
-	ball.bounce();
+	movementBall(1, 1);
 }
+
+function createBall(ball_amount) {
+	for (i = 0; i < ball_amount; i++) {
+		ballArray[i] = new Ball(windowWidth / 2, windowHeight / 2, 20)
+		console.log(i)
+	}
+}
+
+function movementBall(ball_xVelocity, ball_yVelocity){
+	for (var i = 0; i < ballArray.length; i++) {
+		ballArray[i].move(ball_xVelocity, ball_yVelocity);
+		ballArray[i].show();
+		ballArray[i].bounce();
+	}
+
+}
+
 class Ball {
-	constructor(x, y, r){
+	constructor(x, y, r) {
 		this.x = x;
 		this.y = y;
 		this.r = r;
 	}
-	move() {
-		this.x = this.x + random(-4 , 4);
-		this.y = this.y + random(-4 , 4);
+	move(ball_xVelocity, ball_yVelocity) {
+		this.x = this.x + random(-1 * ball_xVelocity, ball_xVelocity);
+		this.y = this.y + random(-1 * ball_yVelocity, ball_yVelocity);
 	}
 	show() {
-    stroke(255);
-    strokeWeight(4);
-    noFill();
-    ellipse(this.x, this.y, this.r);
+		stroke(color(random(0, 255), random(0, 255), random(0, 255)));
+		strokeWeight(4);
+		noFill();
+		ellipse(this.x, this.y, this.r);
 	}
 	bounce() {
-		if(this.y > (height - this.r)) {
+		if (this.y > (height - this.r)) {
 			this.y = height - this.r;
-				console.log("Y Position: " + this.y);
-		} else if(this.y < this.r){
+		} else if (this.y < this.r) {
 			this.y = this.r;
-				console.log("Y Position: " + this.y);
-				}
+		}
 		if (this.x < this.r) {
 			this.x = this.r;
-				console.log("X Position: " + this.x);
-		} else if (this.x > (width - this.r))
-			this.x = width - this.x;
-			console.log("X Position: " + this.x);
-
+		} else if (this.x > (width - this.r)) {
+			this.x = width - this.r;
 		}
 	}
+}
+
