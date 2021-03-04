@@ -6,27 +6,28 @@ var button;
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-	createBall(10);
-	frameRate(10);
+	createBall(5);
+	frameRate(60);
+	setInterval(removeBall, 1000);
 }
 
 function draw() {
 	background(200);
-	movementBall(5, 5);
-	setInterval(removeBall, 1000);
+	movementBall(8, 8);
+
 }
 
 function createBall(ball_amount) {
 	for (i = 0; i < ball_amount; i++) {
-		ballArray[i] = new Ball(windowWidth / 2, windowHeight / 2, 20)
+		ballArray[i] = new Ball(windowWidth / 2, windowHeight / 2, 40)
 		console.log("Amount of balls :" + ballArray.length);
 	}
 }
 
 function removeBall(){
-
 	ballArray.splice(0, 1);
-	createBall(ballArray.length + 1);
+	ballArray.push(new Ball(windowWidth / 2, windowHeight / 2, 40))
+	console.log("Amount of balls: " + ballArray.length);
 }
 
 function movementBall(ball_xVelocity, ball_yVelocity) {
