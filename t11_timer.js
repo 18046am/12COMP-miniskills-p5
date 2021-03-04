@@ -1,28 +1,35 @@
 //var creation
 var ballArray = [];
 var radius;
-var i; 
+var i;
+var button;
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-	createBall(50);
-	frameRate(60);
-	console.log(ballArray.length);
+	createBall(10);
+	frameRate(10);
 }
 
 function draw() {
 	background(200);
-	movementBall(1, 1);
+	movementBall(5, 5);
+	setInterval(removeBall, 1000);
 }
 
 function createBall(ball_amount) {
 	for (i = 0; i < ball_amount; i++) {
 		ballArray[i] = new Ball(windowWidth / 2, windowHeight / 2, 20)
-		console.log(i)
+		console.log("Amount of balls :" + ballArray.length);
 	}
 }
 
-function movementBall(ball_xVelocity, ball_yVelocity){
+function removeBall(){
+
+	ballArray.splice(0, 1);
+	createBall(ballArray.length + 1);
+}
+
+function movementBall(ball_xVelocity, ball_yVelocity) {
 	for (var i = 0; i < ballArray.length; i++) {
 		ballArray[i].move(ball_xVelocity, ball_yVelocity);
 		ballArray[i].show();
@@ -61,3 +68,16 @@ class Ball {
 	}
 }
 
+//set flag to false
+//loop these array of balls
+//if you hit a ball 
+// * +1 to hits
+// * set flag to true
+//	if flag is still false 
+// 		* add 1 to misses
+// 
+// distancetoball = dist(this.posX, this.posY, mouseX, mouseY ) 
+// 
+// 
+// 
+// 

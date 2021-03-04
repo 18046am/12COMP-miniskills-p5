@@ -7,12 +7,11 @@ function setup() {
 	createCanvas(windowWidth, windowHeight);
 	createBall(50);
 	frameRate(60);
-	console.log(ballArray.length);
 }
 
 function draw() {
 	background(200);
-	movementBall(1, 1);
+	movementBall(5, 5);
 }
 
 function createBall(ball_amount) {
